@@ -1,0 +1,22 @@
+name: First Workflow
+
+on: [push, issues]
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo Command 1 in Job 1
+              run: echo -e "\033[35mStep1 complete!\033[0m"
+            - name: Echo Command 2 in Job 1
+              run: echo -e "\033[35mStep2 complete!\033[0m"
+
+    job2:
+        runs-on: ubuntu-latest
+        needs: job1
+        steps:
+            - name: Cowsays
+              uses: mscoutermarsh/cowsays-action@master
+              with:
+                text: "Ready for prod–ship it!"
+                color: 'magenta'
